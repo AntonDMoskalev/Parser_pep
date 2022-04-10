@@ -2,6 +2,7 @@ import logging
 
 from requests import RequestException
 
+from constants import EXPECTED_STATUS
 from exceptions import ParserFindTagException
 
 
@@ -30,6 +31,9 @@ def find_tag(soup, tag, attrs=None, string=None):
 
 def difference_status(url_card, preview_status, card_status):
     """Error logging status discrepancy."""
+    if card_status not in EXPECTED_STATUS.get(card_status[0]) and (
+            card_status != 'Draft'):
+        card_status = 'Some unknown status'
     if card_status not in preview_status:
         error_msg = (f'Несовпадающие статусы: '
                      f'{url_card} '

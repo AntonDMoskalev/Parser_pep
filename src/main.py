@@ -122,7 +122,7 @@ def pep(session):
     status_list = {}
     results = [('Статус', 'Количество')]
 
-    for value in tqdm(values[:5]):
+    for value in tqdm(values):
         pep_card_url = urljoin(URL_PEP, value.find('td',
                                attrs={'class': 'num'}).find('a')['href'])
         response_card = session.get(pep_card_url)
@@ -133,16 +133,11 @@ def pep(session):
 
         preview_status = EXPECTED_STATUS.get(value.find('td').text[1:])
         card_status = status_tag.find_next_sibling().string
-        if card_status not in EXPECTED_STATUS.get(card_status[0]) and (
-                    card_status != 'Draft'):
-            card_status = 'Some unknown status'
 
         difference_status(pep_card_url, preview_status, card_status)
 
-        if card_status not in status_list:
-            status_list[card_status] = 1
-        else:
-            status_list[card_status] += 1
+        status_list[card_status] = status_list.get(card_status, 0) + 1
+
         total += 1
     for quantity in status_list.items():
         results.append(quantity)
