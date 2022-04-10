@@ -10,7 +10,7 @@
 ## Запуск проекта:
 
 #### Склонировать репозиторий
-> https://github.com/AntonDMoskalev/bs4_parser_pep.git
+> https://github.com/AntonDMoskalev/Parser_pep.git
 
 #### Установить и активировать виртуальное окружение
 > python -m venv venv
