@@ -16,7 +16,7 @@
 > python -m venv venv
 
 #### Обновить менеджер пакетов PIP
-> pip install --upgrade pip
+> python -m pip install --upgrade pip
 
 #### Requirements.txt
 > pip install -r requirements.txt
